@@ -1,13 +1,10 @@
-"use client";
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Plus } from 'lucide-react'
 import Link from "next/link"
-import { useTasks } from "@/context/TaskContext"
+import { TaskList } from "@/components/custom/TaskList";
+import { NewTaskField } from "@/components/custom/NewTaskField";
 
 export default function Home() {
-  const { tasks, addTask } = useTasks();
+
   return (
     <div className="min-h-screen bg-background">
       <header className="flex h-16 items-center justify-between border-b px-4 lg:px-6">
@@ -26,15 +23,7 @@ export default function Home() {
           What would you like to accomplish?
         </h1>
         <div className="relative w-full max-w-2xl">
-          <Input
-            className="h-12 rounded-lg pl-4 pr-20 text-base"
-            placeholder="Enter your task title..."
-          />
-          <div className="absolute right-2 top-2 flex items-center gap-2">
-            <Button size="icon">
-              <Plus className="h-5 w-5" />
-            </Button>
-          </div>
+          <NewTaskField />
         </div>
         <section className="mt-16 w-full">
           <div className="flex items-center justify-between">
@@ -42,19 +31,7 @@ export default function Home() {
             <Button variant="ghost">View All</Button>
           </div>
           <div className="mt-6 grid gap-4">
-            {tasks.map((task) => (
-              <Card key={task.id}>
-                <CardContent className="flex items-center gap-4 p-4">
-                  <div className="flex-1">
-                    <h3 className="font-semibold">{task.title}</h3>
-                  <p className="text-sm text-muted-foreground">Due in 3 days</p>
-                </div>
-                <Button variant="outline" size="sm">
-                  Continue
-                </Button>
-                </CardContent>
-              </Card>
-            ))}
+            <TaskList />
           </div>
         </section>
       </main>

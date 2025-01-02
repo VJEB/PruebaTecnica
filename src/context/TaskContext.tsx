@@ -6,6 +6,7 @@ import React, { createContext, JSX, ReactNode, useContext, useState } from "reac
 interface TaskContextType {
     tasks: Task[];
     addTask: (task: Task) => void;
+    removeTask: (id: number) => void;
 }
 
 export const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -45,10 +46,12 @@ const initialTasks: Task[] = [
 export const TaskProvider: React.FC<TaskProviderProps> = ({ children }: TaskProviderProps): JSX.Element => {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
 
-  const addTask = (task: Task) => setTasks((prev) => [...prev, task]);
+  const addTask = (task: Task) => setTasks((prev) => [task, ...prev]);
+
+  const removeTask = (id: number) => setTasks((prev) => prev.filter((task) => task.id !== id));
 
   return (
-    <TaskContext.Provider value={{ tasks, addTask }}>
+    <TaskContext.Provider value={{ tasks, addTask, removeTask }}>
       {children}
     </TaskContext.Provider>
   );
