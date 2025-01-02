@@ -40,6 +40,7 @@ export default function TaskDetails() {
     createdAt: new Date(),
     updatedAt: new Date(),
     priority: "Low",
+    status: "In Progress",
   });
 
   // Effect to check and set the task based on the taskId in the URL
@@ -76,6 +77,7 @@ export default function TaskDetails() {
       createdAt: new Date(),
       updatedAt: new Date(),
       priority: "Low",
+      status: "In Progress",
     }); // Clear the input field after adding the task
     navigate.push("/");
   };

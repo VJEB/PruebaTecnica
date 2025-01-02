@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const PriorityEnum = z.enum(["Low", "Medium", "High"]);
+export const StatusEnum = z.enum(["In Progress", "Completed"]);
 
 export const taskSchema = z.object({
   id: z.string(),
@@ -16,6 +17,7 @@ export const taskSchema = z.object({
   createdAt: z.date(),
   updatedAt: z.date(),
   priority: PriorityEnum,
+  status: StatusEnum,
 });
 
 export type Task = z.infer<typeof taskSchema>;

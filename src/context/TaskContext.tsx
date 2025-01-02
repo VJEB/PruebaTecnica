@@ -25,6 +25,7 @@ const initialTasks: Task[] = [
     createdAt: new Date("2025-01-01"),
     updatedAt: new Date("2025-01-01"),
     priority: "Low",
+    status: "In Progress",
   },
   {
     id: uuidv4(),
@@ -34,6 +35,7 @@ const initialTasks: Task[] = [
     createdAt: new Date("2025-01-02"),
     updatedAt: new Date("2025-01-02"),
     priority: "Medium",
+    status: "In Progress",
   },
   {
     id: uuidv4(),
@@ -43,6 +45,7 @@ const initialTasks: Task[] = [
     createdAt: new Date("2025-01-03"),
     updatedAt: new Date("2025-01-03"),
     priority: "High",
+    status: "In Progress",
   },
 ];
 
