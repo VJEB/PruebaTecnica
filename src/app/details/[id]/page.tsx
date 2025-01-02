@@ -64,15 +64,17 @@ export default function TaskDetails({ params: paramsPromise }: { params: Promise
                 <span className="font-medium">{new Date(task.dueDate).toLocaleDateString()}</span>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Clock className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm">Created:</span>
-              <span className="font-medium">{new Date(task.createdAt).toLocaleString()}</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Clock className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm">Last Updated:</span>
-              <span className="font-medium">{new Date(task.updatedAt).toLocaleString()}</span>
+            <div className="grid gap-4 sm:grid-cols-2">
+                <div className="flex items-center space-x-2">
+                    <Clock className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm">Created:</span>
+                    <span className="font-medium">{new Date(task.createdAt).toLocaleString()}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <Clock className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm">Last Updated:</span>
+                    <span className="font-medium">{new Date(task.updatedAt).toLocaleString()}</span>
+                </div>
             </div>
             <div className="flex justify-end space-x-4 pt-4">
                 <Button variant="outline" onClick={() => router.push(`/details?taskId=${task.id}`)}>Edit Task</Button>
