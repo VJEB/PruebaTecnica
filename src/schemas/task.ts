@@ -1,7 +1,9 @@
 import { z } from "zod";
 
+export const PriorityEnum = z.enum(["Low", "Medium", "High"]);
+
 export const taskSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   title: z
     .string()
     .nonempty("Title is required")
@@ -13,6 +15,8 @@ export const taskSchema = z.object({
   dueDate: z.date(),
   createdAt: z.date(),
   updatedAt: z.date(),
+  priority: PriorityEnum,
 });
 
 export type Task = z.infer<typeof taskSchema>;
+export type PriorityEnum = z.infer<typeof PriorityEnum>;
