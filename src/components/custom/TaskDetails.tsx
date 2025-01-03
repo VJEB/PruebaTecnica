@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation"
 import { useTasks } from "@/context/TaskContext"
 import { useSearchParams } from "next/navigation"
 
-export function TaskDetails() {
+export function TaskForm() {
     const { tasks, addTask, updateTask } = useTasks();
     const searchParams = useSearchParams();
     const navigate = useRouter();
