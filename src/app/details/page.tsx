@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+// import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -20,14 +20,14 @@ import {
 } from "@/components/ui/popover"
 import { CalendarIcon, ChevronLeft } from 'lucide-react'
 import { format } from "date-fns"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import Link from "next/link"
 import { PriorityEnum, Task } from "@/schemas/task"
 import { useRouter } from "next/navigation"
 import { useTasks } from "@/context/TaskContext"
 import { useSearchParams } from "next/navigation"
 
-export default function TaskDetails() {
+export function TaskDetails() {
   const { tasks, addTask, updateTask } = useTasks();
   const searchParams = useSearchParams();
   const navigate = useRouter();
@@ -48,10 +48,10 @@ export default function TaskDetails() {
     const taskId = searchParams.get("taskId") || "0";
     console.log(taskId, 'taskId');
     if (taskId === "0") {
-      setTask({
-        ...task,
+      setTask(prevTask => ({
+        ...prevTask,
         title: searchParams.get("title") || "New Task",
-      });
+      }));
     }
     if (taskId !== "0") {
       const existingTask = tasks.find((t) => t.id === taskId);
@@ -160,4 +160,12 @@ export default function TaskDetails() {
       </main>
     </div>
   )
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TaskDetails />
+    </Suspense>
+  );
 }
