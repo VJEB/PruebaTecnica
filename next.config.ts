@@ -18,4 +18,4 @@ export default withPWA({
   ...nextConfig,
   dest: 'public', // Directory where service worker files will be stored
   disable: process.env.NODE_ENV === 'development', // Disable PWA in development mode
-});
+})(nextConfig as any);
