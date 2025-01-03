@@ -27,6 +27,14 @@ import { useRouter } from "next/navigation"
 import { useTasks } from "@/context/TaskContext"
 import { useSearchParams } from "next/navigation"
 
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TaskDetails />
+    </Suspense>
+  );
+}
+
 export function TaskDetails() {
   const { tasks, addTask, updateTask } = useTasks();
   const searchParams = useSearchParams();
@@ -160,12 +168,4 @@ export function TaskDetails() {
       </main>
     </div>
   )
-}
-
-export default function Page() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <TaskDetails />
-    </Suspense>
-  );
 }
