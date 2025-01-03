@@ -2,6 +2,24 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+# Clone the repository
+
+```bash
+git clone https://github.com/VJEB/PruebaTecnica
+```
+
+# Navigate into the project folder
+
+```bash
+cd PruebaTecnica
+```
+
+# Open the project in Visual Studio Code
+
+```bash
+code .
+```
+
 ### Install
 
 To install the project dependencies, ensure you use the `--legacy-peer-deps` flag to avoid potential compatibility issues with peer dependencies. Run the following command:
