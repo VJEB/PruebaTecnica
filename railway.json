@@ -1,15 +1,26 @@
 {
     "$schema": "https://railway.com/railway.schema.json",
     "build": {
-        "nixpacksPlan": {
-            "providers": ["python", "node"],
-            "phases": {
-                "install": {
-                    "dependsOn": ["setup"],
-                    "cmds": ["npm ci --legacy-peer-deps"]
-                }
-            }
+      "nixpacksPlan": {
+        "providers": ["node"],
+        "phases": {
+          "setup": {
+            "cmds": ["node --version", "npm --version"]
+          },
+          "install": {
+            "dependsOn": ["setup"],
+            "cmds": ["npm ci --legacy-peer-deps"]
+          },
+          "node:install": {
+            "dependsOn": ["setup"],
+            "cmds": ["npm ci --legacy-peer-deps"]
+          },
+          "node:build": {
+            "dependsOn": ["install"],
+            "cmds": ["npm run build"]
+          }
         }
+      }
     },
     "deploy": {
       "region": "us-west2",
@@ -24,4 +35,4 @@
       "restartPolicyType": "ON_FAILURE",
       "restartPolicyMaxRetries": 10
     }
-  }
+}  

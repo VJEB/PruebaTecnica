@@ -14,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { formatDistanceToNow } from "date-fns";
 
 export function TaskList() {
   const { tasks, updateTask, removeTask } = useTasks();
@@ -21,6 +22,12 @@ export function TaskList() {
 
   const handleMarkCompleted = (taskId: string) => {
     updateTask({ ...tasks.find(task => task.id === taskId), status: "Completed" } as Task);
+  };
+
+  const getDueDateMessage = (dueDate: Date) => {
+    const now = new Date();
+    if (dueDate < now) return "Past due!";
+    return `Due in ${formatDistanceToNow(dueDate)}`
   };
 
   return (
@@ -32,7 +39,9 @@ export function TaskList() {
               <h3 className={`font-semibold ${task.status === "Completed" ? 'line-through text-muted-foreground' : ''}`}>
                 {task.title}
               </h3>
-              <p className="text-sm text-muted-foreground">Due in 3 days</p>
+              <p className="text-sm text-muted-foreground">
+                {getDueDateMessage(task.dueDate)}
+              </p>
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
